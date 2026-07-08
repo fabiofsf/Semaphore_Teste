@@ -7,7 +7,7 @@
   tasks:
     - name: Criar arquivo
       copy:
-        content: "Teste do Semaphore"
+        content: "Testado!!"
         dest: /tmp/teste_semaphore.txt
 
     - name: Exibir mensagem
