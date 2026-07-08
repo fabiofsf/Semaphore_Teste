@@ -1,23 +1,12 @@
+
 ---
-- name: Teste Semaphore
-  hosts: localhost
+- hosts: localhost
   connection: local
-  become: true
+  gather_facts: false
 
   tasks:
-    - name: Criar arquivo de teste
-      copy:
-        content: |
-          Semaphore funcionando!
-          Data: {{ ansible_date_time.iso8601 }}
-        dest: /tmp/semaphore_teste.txt
-        mode: '0644'
+    - command: whoami
+      register: usuario
 
-    - name: Verificar arquivo
-      stat:
-        path: /tmp/semaphore_teste.txt
-      register: arquivo
-
-    - name: Mostrar resultado
-      debug:
-        var: arquivo.stat.exists
+    - debug:
+        var: usuario.stdout
