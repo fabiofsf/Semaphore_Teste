@@ -1,5 +1,23 @@
 ---
-- name: Teste de Conectividade
-  hosts: all
+- name: Teste Semaphore
+  hosts: localhost
+  connection: local
+  become: true
+
   tasks:
-    - ping:
+    - name: Criar arquivo de teste
+      copy:
+        content: |
+          Semaphore funcionando!
+          Data: {{ ansible_date_time.iso8601 }}
+        dest: /tmp/semaphore_teste.txt
+        mode: '0644'
+
+    - name: Verificar arquivo
+      stat:
+        path: /tmp/semaphore_teste.txt
+      register: arquivo
+
+    - name: Mostrar resultado
+      debug:
+        var: arquivo.stat.exists
