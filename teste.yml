@@ -1,12 +1,15 @@
-
 ---
-- hosts: localhost
+- name: Teste Semaphore
+  hosts: localhost
   connection: local
   gather_facts: false
 
   tasks:
-    - command: whoami
-      register: usuario
+    - name: Criar arquivo
+      copy:
+        content: "Teste do Semaphore"
+        dest: /tmp/teste_semaphore.txt
 
-    - debug:
-        var: usuario.stdout
+    - name: Exibir mensagem
+      debug:
+        msg: "Arquivo criado com sucesso"
