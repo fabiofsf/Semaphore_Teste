@@ -1,1 +1,5 @@
-
+---
+- name: Teste de Conectividade
+  hosts: all
+  tasks:
+    - ping:
